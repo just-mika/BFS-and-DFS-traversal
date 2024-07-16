@@ -1,4 +1,4 @@
-void BFS(Graph* graph, char start[]){
+List* BFS(Graph* graph, char start[]){
 	List* Queue = (List*)malloc(sizeof(List)); //Queue for the traversal
 	List* Visited = (List*)malloc(sizeof(List)); //Queue for visited vertices
 	String currVer; //string for ID of current vertex
@@ -23,6 +23,5 @@ void BFS(Graph* graph, char start[]){
 		}
 	}
 	free(Queue); //return allocated memory
-	printList(*Visited); //print resulting BFS
-	free(Visited); //return allocated memory.
+	return Visited; //return list containing bfs
 }
