@@ -18,7 +18,7 @@ typedef struct {
 	List* vertices; //adjacency list
 } Graph;
 
-//operations for the list/queue
+//operations for the list/queue/stack
 void initializeList(List* list);
 int isVisited(List visited, char ID[]);
 void printList(List list);
@@ -26,6 +26,8 @@ int isEmpty(List* list);
 node* createNode(char ID[]);
 void addNode(List* list, char ID[]);
 void dequeue(List* list);
+void pop(List * stack);
+void sortCandidates(List* candidates, List* stack);
 
 //operations for graph
 int isGraphEmpty(Graph* graph);
@@ -35,3 +37,5 @@ List* findVertex(Graph* graph, char ID[]);
 void addEdge(Graph* graph, char ID1[], char ID2[]);
 void listVertices(Graph* graph);
 void printGraph(Graph* graph);
+int countDegrees(List* list);
+char* getOriginalCase(Graph graph, char ID[]);
