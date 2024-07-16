@@ -146,3 +146,78 @@ void printGraph(Graph* graph) {
         printf("NULL\n");
     }
 }
+
+//count degrees of a vertex
+int countDegrees(List* list){
+	int size = 0;
+	node* temp = list->first;
+	while(temp != NULL){
+		temp = temp->next;
+		size++;
+	}
+	return size-1;
+}
+
+//for retaining the same upper lower case in input to output
+char* getOriginalCase(Graph graph, char ID[]){
+	int i;
+	for(i = 0; i < graph.nVertices; i++){
+		if(strcasecmp(ID, graph.vertices[i].first->ID) == 0){
+			return graph.vertices[i].first->ID;
+		}
+	}
+}
+
+//pop last node in stack for dfs
+void pop(List* list){
+    node* temp = list->first;
+    if(list->first == NULL){
+        printf("LIST IS EMPTY\n");
+    } else if (list->first == list->last) {
+        free(list->first);
+        list->first = NULL;
+        list->last = NULL;
+    } else{
+        while(temp->next != list->last){
+            temp = temp->next;
+        }
+        free(list->last);
+        list->last = temp;
+        list->last->next = NULL;
+    }
+}
+
+//sort candidate nodes into descending order then store it in stack
+void sortCandidates(List* candidates, List* stack){
+    int i, j = 0;
+    node* temp1;
+	node* last = NULL;
+    int swapped = 0;
+
+	if(candidates->first != NULL){//bubble sort to descending
+		do {
+			swapped = 0;
+			temp1 = candidates->first;
+
+			while (temp1->next != last) {
+				if (strcmp(temp1->ID, temp1->next->ID) < 0) {
+					String tempID;
+					strcpy(tempID, temp1->ID);
+					strcpy(temp1->ID, temp1->next->ID);
+					strcpy(temp1->next->ID, tempID);
+					swapped = 1;
+				}
+				temp1 = temp1->next;
+			}
+			last = temp1;
+		} while (swapped);
+	}
+
+	//copy sorted values to stack list
+	temp1 = candidates->first;
+	while(temp1 != NULL){
+		addNode(stack, temp1->ID);
+		temp1 = temp1->next;
+	}
+
+}
