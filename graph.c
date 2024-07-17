@@ -187,37 +187,66 @@ void pop(List* list){
     }
 }
 
-//sort candidate nodes into descending order then store it in stack
-void sortCandidates(List* candidates, List* stack){
+//sort candidate nodes into descending/ascending order then store it in stack/queue
+void sortCandidates(List* candidates, List* list, int traversal){
     int i, j = 0;
     node* temp1;
 	node* last = NULL;
     int swapped = 0;
 
-	if(candidates->first != NULL){//bubble sort to descending
-		do {
-			swapped = 0;
-			temp1 = candidates->first;
+	//sorts descending for DFS
+	if(traversal == 1){
+		if(candidates->first != NULL){//bubble sort to descending
+			do {
+				swapped = 0;
+				temp1 = candidates->first;
 
-			while (temp1->next != last) {
-				if (strcmp(temp1->ID, temp1->next->ID) < 0) {
-					String tempID;
-					strcpy(tempID, temp1->ID);
-					strcpy(temp1->ID, temp1->next->ID);
-					strcpy(temp1->next->ID, tempID);
-					swapped = 1;
+				while (temp1->next != last) {
+					if (strcmp(temp1->ID, temp1->next->ID) < 0) {
+						String tempID;
+						strcpy(tempID, temp1->ID);
+						strcpy(temp1->ID, temp1->next->ID);
+						strcpy(temp1->next->ID, tempID);
+						swapped = 1;
+					}
+					temp1 = temp1->next;
 				}
-				temp1 = temp1->next;
-			}
-			last = temp1;
-		} while (swapped);
-	}
+				last = temp1;
+			} while (swapped);
+		}
 
-	//copy sorted values to stack list
-	temp1 = candidates->first;
-	while(temp1 != NULL){
-		addNode(stack, temp1->ID);
-		temp1 = temp1->next;
+		//copy sorted values to stack list
+		temp1 = candidates->first;
+		while(temp1 != NULL){
+			addNode(list, temp1->ID);
+			temp1 = temp1->next;
+		}
+	}else{ //sort in ascending for BFS
+		if(candidates->first != NULL){//bubble sort to descending
+			do {
+				swapped = 0;
+				temp1 = candidates->first;
+
+				while (temp1->next != last) {
+					if (strcmp(temp1->ID, temp1->next->ID) > 0) {
+						String tempID;
+						strcpy(tempID, temp1->ID);
+						strcpy(temp1->ID, temp1->next->ID);
+						strcpy(temp1->next->ID, tempID);
+						swapped = 1;
+					}
+					temp1 = temp1->next;
+				}
+				last = temp1;
+			} while (swapped);
+		}
+
+		//copy sorted values to queue list
+		temp1 = candidates->first;
+		while(temp1 != NULL){
+			addNode(list, temp1->ID);
+			temp1 = temp1->next;
+		}
 	}
 
 }
