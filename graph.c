@@ -166,6 +166,7 @@ char* getOriginalCase(Graph graph, char ID[]){
 			return graph.vertices[i].first->ID;
 		}
 	}
+	return NULL;
 }
 
 //pop last node in stack for dfs
