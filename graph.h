@@ -27,7 +27,6 @@ node* createNode(char ID[]);
 void addNode(List* list, char ID[]);
 void dequeue(List* list);
 void pop(List * stack);
-void sortCandidates(List* candidates, List* stack);
 void sortCandidates(List* candidates, List* list, int traversal);
 
 //operations for graph
