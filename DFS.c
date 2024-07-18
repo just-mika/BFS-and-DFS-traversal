@@ -24,7 +24,7 @@ List* DFS(Graph graph, String start){
             }
             child = child->next;
         }
-        sortCandidates(candidateNodes, Stack);
+        sortCandidates(candidateNodes, Stack, 1);
     }
 
     
