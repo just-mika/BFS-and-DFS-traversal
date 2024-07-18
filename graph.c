@@ -190,10 +190,9 @@ void pop(List* list){
 
 //sort candidate nodes into descending/ascending order then store it in stack/queue
 void sortCandidates(List* candidates, List* list, int traversal){
-    int i, j = 0;
-    node* temp1;
+	node* temp1;
 	node* last = NULL;
-    int swapped = 0;
+    	int swapped = 0;
 
 	//sorts descending for DFS
 	if(traversal == 1){
