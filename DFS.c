@@ -3,7 +3,6 @@ List* DFS(Graph graph, String start){
     List* Visited = (List*)malloc(sizeof(List)); //Stack for visited vertices
     String currVer; //string for ID of current vertex
     List* candidateNodes = (List*)malloc(sizeof(List)); //placeholder for candidates before sort
-    int index = 1;
 
     initializeList(Stack);
     initializeList(Visited);
