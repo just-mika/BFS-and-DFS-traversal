@@ -36,6 +36,7 @@ int main(){
 		for(int i = 0; i < graph->nVertices; i++){
 			fscanf(fInput,"%s", temp);
 			if(strcasecmp(temp, startVertex) == 0){
+				strcpy(startVertex, temp);
 				hasStartVertex = 1;
 			}
 			addVertex(graph, temp);
