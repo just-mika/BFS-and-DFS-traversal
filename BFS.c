@@ -1,6 +1,6 @@
 List* BFS(Graph* graph, char start[]){
 	List* Queue = (List*)malloc(sizeof(List)); //Queue for the traversal
-	List* Visited = (List*)malloc(sizeof(List)); //Queue for visited vertices
+	List* Visited = (List*)malloc(sizeof(List)); //list for visited vertices
 	String currVer; //string for ID of current vertex
 	List* candidateNodes = (List*)malloc(sizeof(List)); //list for candidates
 	
