@@ -31,16 +31,16 @@ int main(){
 	}else{
 		printf("Input start vertex for traversal: ");
 		scanf("%s", startVertex);
-		fscanf(fInput, "%d\n", &vertexCount);
+		fscanf(fInput, "%d\n", &vertexCount); //reads number of vertices from file
 		graph = createGraph(vertexCount);
-		for(int i = 0; i < graph->nVertices; i++){
+		for(int i = 0; i < graph->nVertices; i++){ //checks if starting vertex exists
 			fscanf(fInput,"%s", temp);
 			if(strcasecmp(temp, startVertex) == 0){
 				strcpy(startVertex, temp);
-				hasStartVertex = 1;
+				hasStartVertex = 1; //starting vertex has been found
 			}
 			addVertex(graph, temp);
-			while(notEnd){
+			while(notEnd){ //add the vertices from file to an adjacency list of the graph
 				fscanf(fInput, "%s", temp);
 				if(strcmp(temp, "-1") != 0){
 					addNode(&graph->vertices[i], temp);
@@ -50,11 +50,11 @@ int main(){
 			}
 			notEnd = 1;
 		}
-		if(hasStartVertex == 0){
+		if(hasStartVertex == 0){ //case where starting vertex is not found
 			printf("vertex not found");
-		}else{//put in traversals.txt
+		}else{//case where starting vertex has been found -- put in traversals.txt
 			fOutput = fopen("TRAVERSALS.TXT", "w");
-			if(fOutput == NULL){
+			if(fOutput == NULL){ //handles unexpected errors in creating file
 				printf("error in creating output file");
 			}else{
 				for(int i = 0; i < graph->nVertices; i++){ //prints the vertices and degree in file
@@ -63,14 +63,14 @@ int main(){
 				fprintf(fOutput, "\n");
 				bfs = BFS(graph, startVertex);
 				node* temp = bfs->first;
-				while(temp != NULL){
+				while(temp != NULL){ //prints the BFS traversal in output file
 					fprintf(fOutput, "%s ", temp->ID);
 					temp = temp->next;
 				}
 				fprintf(fOutput, "\n\n");
 				dfs = DFS(*graph, startVertex);
 				temp = dfs->first;
-				while(temp != NULL){
+				while(temp != NULL){ //prints the DFS traversal in output file
 					fprintf(fOutput, "%s ", temp->ID);
 					temp = temp->next;
 				}
@@ -79,6 +79,5 @@ int main(){
 		fclose(fInput);
 		fclose(fOutput);
 	}
-
 	return 0;
 }
